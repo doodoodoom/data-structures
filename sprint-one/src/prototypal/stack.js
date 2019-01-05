@@ -1,13 +1,13 @@
 var Stack = function() {
-  var someInstance = Object.create(Stack.stackMethods);
+  var someInstance = Object.create(stackMethods);
   someInstance.storage = {};
   someInstance.count = 0;
   return someInstance;
 };
 
-Stack.stackMethods = {};
+var stackMethods = {};
 
-Stack.stackMethods.push = function(value) {
+stackMethods.push = function(value) {
   this.storage[this.count] = value; 
   //e.g {0: "first val", 1: "second val"}
   this.count += 1;
@@ -15,7 +15,7 @@ Stack.stackMethods.push = function(value) {
 };
 
 // the last elem is the size minus 1
-Stack.stackMethods.pop = function() {
+stackMethods.pop = function() {
   if (this.count === 0) {
     return 0;
   }
@@ -26,7 +26,7 @@ Stack.stackMethods.pop = function() {
   return elemToRemove;
 };
 
-Stack.stackMethods.size = function() {
+stackMethods.size = function() {
   return this.count;
 };
-var s = Stack();
+// var s = Stack();
