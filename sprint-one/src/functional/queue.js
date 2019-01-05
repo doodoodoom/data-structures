@@ -22,9 +22,9 @@ var Queue = function() {
     if (count === 0) {
       return 0;
     }
-    var idxToRemove = Object.keys(storage)[0];
-    var itemToRemove = storage[idxToRemove];
-    delete storage[idxToRemove];
+    var firstIdx = Object.keys(storage)[0];
+    var itemToRemove = storage[firstIdx];
+    delete storage[firstIdx];
     count -= 1;
     return itemToRemove;
   };
