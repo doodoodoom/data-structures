@@ -9,7 +9,7 @@ class Stack {
     this.storage[this.count] = value;
     this.count += 1;
     return this.storage;
-  };
+  }
 
   pop() {
     if (this.count === 0) {
@@ -20,10 +20,10 @@ class Stack {
     delete this.storage[lastIdx];
     this.count -= 1;
     return idxToRemove;
-  };
+  }
 
   size() {
     return this.count;
-  };
+  }
 }
 var s = new Stack();
