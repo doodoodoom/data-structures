@@ -18,16 +18,16 @@ var BinarySearchTree = function(value) {
 //     }
 //     return newTree;
 
-    var subTree = BinarySearchTree(value);
+    var node = BinarySearchTree(value);
     if (value < newTree.value) {
         if (newTree.left === null) {
-            newTree.left = subTree;
+            newTree.left = node;
         } else {
             newTree.left.insert(value);
         }
     } else if (value > newTree.value) {
         if (newTree.right === null) {
-            newTree.right = subTree;
+            newTree.right = node;
         } else {
             newTree.right.insert(value);
         }
@@ -37,12 +37,47 @@ var BinarySearchTree = function(value) {
   } 
 
   newTree.contains = function(target) {
-
+    //if target is equal to root
+      // target is found (true)
+    //if target is less than root
+      //if root.left is null
+        // target not found (false)
+      //else
+        // run contains again (recurse)
+    //if target is greater than root
+      //if root.right is null
+        // target not found (false)
+      //else
+        // run contains again (recurse)
+    if (target === newTree.value) {
+      return true;
+    }
+    if (target < newTree.value) {
+      if (newTree.left === null) {
+        return false;
+      } else {
+        return newTree.left.contains(target);
+      }
+    }
+    if (target > newTree.value) {
+      if (newTree.right === null) {
+        return false;
+      } else {
+        return newTree.right.contains(target);
+      }
+    }
   }
 
   newTree.depthFirstLog = function(callback) {
-
-
+    callback(newTree.value);
+    if (newTree.left !== null) {
+      // callback(newTree.left.value);
+      newTree.left.depthFirstLog(callback);
+    } 
+    if (newTree.right !== null) {
+      // callback(newTree.right.value);
+      newTree.right.depthFirstLog(callback);
+    }
   }
   return newTree;
 };
