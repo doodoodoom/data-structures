@@ -23,6 +23,7 @@ treeMethods.addChild = function(value) {
 
 treeMethods.contains = function(target) {
     var wasFound = false;
+
     function helper(childTree) {
       if (childTree.value === target) {
           wasFound = true;
@@ -30,8 +31,7 @@ treeMethods.contains = function(target) {
       }
       if (childTree.children.length) {
           for (var i = 0; i < childTree.children.length; i++) {
-//           console.log("current value is ", childTree.children[i].value);
-          helper(childTree.children[i]);
+            helper(childTree.children[i]);
         }
       }
    }
