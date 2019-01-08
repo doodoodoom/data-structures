@@ -68,4 +68,15 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should remove all related references to a node when it is removed', function() {
+    graph.addNode(2);
+    graph.addNode(3);
+    graph.addNode(4);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 4);
+    graph.removeNode(3);
+    expect(graph.hasEdge(2, 3)).to.equal(false);
+    expect(graph.hasEdge(4, 3)).to.equal(false);
+  });
 });
