@@ -41,4 +41,22 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should accept any values as a child', function() {
+    var arr = [1,2,3];
+    var obj = {foo: "bar"};
+    var func = function() {return;};
+    tree.addChild(5);
+    tree.addChild("string");
+    tree.addChild(false);
+    tree.addChild(arr);
+    tree.addChild(obj);
+    tree.addChild(func);
+    expect(tree.contains(5)).to.equal(true);
+    expect(tree.contains("string")).to.equal(true);
+    expect(tree.contains(false)).to.equal(true);
+    expect(tree.contains(arr)).to.equal(true);
+    expect(tree.contains(obj)).to.equal(true);
+    expect(tree.contains(func)).to.equal(true);
+  });
+
 });
