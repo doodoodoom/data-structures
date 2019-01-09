@@ -5,20 +5,11 @@ var BinarySearchTree = function(value) {
   newTree.left = null;
   newTree.right = null;
 
-  newTree.insert = function(value) {
-
-//     if (newTree.left === null && value < newTree.value) {
-//       newTree.left = BinarySearchTree(value);
-//     } else if (newTree.right === null && value > newTree.value) {
-//       newTree.right = BinarySearchTree(value);
-//     } else if (newTree.left !== null && value < newTree.value){
-//       newTree.left.insert(BinarySearchTree(value));
-//     } else if (newTree.right !== null && value > newTree.value){
-//       newTree.right.insert(BinarySearchTree(value));
-//     }
-//     return newTree;
-
-    var node = BinarySearchTree(value);
+newTree.insert = function(value) {
+    if (value === newTree.value || typeof value === "object" || typeof value === "function") {
+      return;
+    }
+    var node = BinarySearchTree(value); //{value: __}
     if (value < newTree.value) {
         if (newTree.left === null) {
             newTree.left = node;
@@ -34,21 +25,31 @@ var BinarySearchTree = function(value) {
     }
     return newTree;
 
-  } 
+    // if (newTree.left === null && value < newTree.value) {
+    //   newTree.left = BinarySearchTree(value);
+    // } else if (newTree.right === null && value > newTree.value) {
+    //   newTree.right = BinarySearchTree(value);
+    // } else if (newTree.left !== null && value < newTree.value){
+    //   newTree.left.insert(value);
+    // } else if (newTree.right !== null && value > newTree.value){
+    //   newTree.right.insert(value);
+    // }
+    // return newTree;
 
+  } 
   newTree.contains = function(target) {
     //if target is equal to root
       // target is found (true)
     //if target is less than root
-      //if root.left is null
+      //if left is null
         // target not found (false)
       //else
-        // run contains again (recurse)
+        // return contains on left subtree
     //if target is greater than root
-      //if root.right is null
+      //if right is null
         // target not found (false)
       //else
-        // run contains again (recurse)
+        // return contains on right subtree
     if (target === newTree.value) {
       return true;
     }
@@ -66,8 +67,15 @@ var BinarySearchTree = function(value) {
         return newTree.right.contains(target);
       }
     }
+    return false;
   }
 
+  // accepts a callback and executes it on every value contained in the tree.
+  // if left of root is not null 
+    // 
+    // look to left subtree, and recursively call the callback on each value in left subtree
+  // if right of root is not null
+    // look to right subtree & recursively call callback on each value in right subtree
   newTree.depthFirstLog = function(callback) {
     callback(newTree.value);
     if (newTree.left !== null) {
@@ -79,9 +87,6 @@ var BinarySearchTree = function(value) {
       newTree.right.depthFirstLog(callback);
     }
   }
+
   return newTree;
 };
-// var t = BinarySearchTree(8)
-// t.insert(3);
-// t.insert(15);
-// t.insert(4)
