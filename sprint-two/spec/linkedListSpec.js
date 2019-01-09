@@ -51,5 +51,13 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
-  // add more tests here to test the functionality of linkedList
+  it('should have its nodes\' next property refer to the next node object', function() {
+    linkedList.addToTail(3);
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(linkedList.head.value).to.equal(3);
+    expect(linkedList.head.next.value).to.equal(4);
+    expect(linkedList.head.next.next.value).to.equal(5);
+    expect(linkedList.tail.value).to.equal(5);
+  });
 });
