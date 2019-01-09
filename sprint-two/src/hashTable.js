@@ -4,6 +4,9 @@ var HashTable = function() {
 };
 //insert value into table, at key output by the hash function
 HashTable.prototype.insert = function(k, v) {
+  if (typeof k !== "string") {
+    return;
+  }
   var index = getIndexBelowMaxForKey(k, this._limit); // --> 2
   var tuple = [k, v];
   var bucketAtIndex = this._storage.get(index); // 
@@ -36,6 +39,9 @@ HashTable.prototype.insert = function(k, v) {
 };
 
 HashTable.prototype.retrieve = function(k) {
+  if (typeof k !== "string") {
+    return undefined;
+  }
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(index);
   //check if storage has bucket at index 

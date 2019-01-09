@@ -47,6 +47,17 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('should only accept strings as keys when inserting', function() {
+    var arr = ["not ok"];
+    var obj = {a: "b"};
+    hashTable.insert("ok key", "!");
+    hashTable.insert(arr, "?");
+    hashTable.insert(obj, "~");
+    expect(hashTable.retrieve("ok key")).to.equal("!");
+    expect(hashTable.retrieve(arr)).to.equal(undefined);
+    expect(hashTable.retrieve(obj)).to.equal(undefined);
+  });
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
     _.each(people, function(person) {
